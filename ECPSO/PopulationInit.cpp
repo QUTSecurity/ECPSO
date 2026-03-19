@@ -1,15 +1,15 @@
-// variant_a.cpp
+// PopulationInit.cpp
 #pragma once
 #include <numeric>
 #include <random>
 #include "variable.h"
 
 // Initialize populations with fitness-guided sampling and random injection.
-void variantA_initialize(individual* population,
+void FitnessGuidedInitialize(individual* population,
     individual* population2,
     const double samples[][vardim],
     const double outputs[][sampsize],
-    int path_index) {
+    int pathIndex) {
 
     const double alpha = 1;
 
@@ -25,7 +25,7 @@ void variantA_initialize(individual* population,
 
     std::vector<double> fitnesses(sampsize);
     for (int i = 0; i < sampsize; ++i) {
-        fitnesses[i] = outputs[path_index][i];
+        fitnesses[i] = outputs[pathIndex][i];
     }
 
     std::vector<int> sorted_idx(sampsize);

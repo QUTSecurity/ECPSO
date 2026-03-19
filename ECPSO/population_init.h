@@ -1,4 +1,4 @@
-﻿// variant_a.h
+﻿// population_init.h
 #pragma once
 #include <vector>
 #include <algorithm>
@@ -7,8 +7,7 @@
 #include <iostream>
 #include "variable.h"
 
-
-void variantA_initialize(individual* population,
+void fitness_guided_initialize(individual* population,
     individual* population2,
     const double samples[][vardim],
     const double outputs[][sampsize],
