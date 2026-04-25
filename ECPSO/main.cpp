@@ -30,7 +30,7 @@ enum class GroupingMode {
 	StaticOnly,
 	DynamicOnly
 };
-// Grouping policy and thresholds for static/dynamic similarity fusion.
+
 const GroupingMode GROUPING_MODE = GroupingMode::Auto;
 const double THETA_SWITCH = 0.8;
 const double THETA_GROUP = 0.7;
@@ -362,7 +362,7 @@ int main(int argc, char** argv)
 	}
 	fflush(stdout);
 	
-	// Stagnation window and intervention settings for local optimum escape.
+	
 	const int STAGNATION_W = 5;
 	const double STAGNATION_EPS = 1e-6;
 	const int ESCAPE_K = 15;
@@ -386,7 +386,7 @@ int main(int argc, char** argv)
 		bool group_finished = false;
 		
 		
-		// Stage 0: try direct transfer from the global experience pool.
+		
 		{
 			const double EPSILON_TRANSFER = thres; 
 			for (size_t gm = 0; gm < current_group.size(); ++gm) {
@@ -668,7 +668,7 @@ int main(int argc, char** argv)
 				hist.push_back(current_best);
 				bool stagnated = false;
 				double delta_w = 0.0;
-				// Detect stagnation by comparing best fitness over a fixed window.
+				
 				if ((int)hist.size() > STAGNATION_W) {
 					delta_w = fabs(hist.back() - hist[(int)hist.size() - 1 - STAGNATION_W]);
 					stagnated = (delta_w < STAGNATION_EPS);
@@ -680,7 +680,7 @@ int main(int argc, char** argv)
 					fflush(stdout);
 
 					if (group_escape_stage[group_idx] == 0) {
-						// Stage 1: inject related donors into worst particles.
+						
 						
 						vector<int> unsolved_paths;
 						for (size_t gm = 0; gm < current_group.size(); ++gm) {
@@ -748,7 +748,7 @@ int main(int argc, char** argv)
 						}
 					}
 					else {
-						// Stage 2: full reinitialization and retraining reset.
+						
 						
 						for (int pi = 0; pi < popsize; ++pi) {
 							for (int vd = 0; vd < vardim; ++vd) {

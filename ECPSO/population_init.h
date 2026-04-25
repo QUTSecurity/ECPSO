@@ -1,4 +1,4 @@
-﻿// population_init.h
+﻿
 #pragma once
 #include <vector>
 #include <algorithm>

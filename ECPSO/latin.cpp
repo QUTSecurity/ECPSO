@@ -7,7 +7,7 @@ using namespace std;
 using std::default_random_engine;
 using std::uniform_int_distribution;
 
-// Generate initial samples with Latin hypercube stratification.
+
 void latin_hypercube(double  samples[sampsize][vardim])
 { 
 	int i, j;

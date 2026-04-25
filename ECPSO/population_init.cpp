@@ -1,10 +1,10 @@
-// population_init.cpp
+
 #pragma once
 #include <numeric>
 #include <random>
 #include "variable.h"
 
-// Initialize populations with fitness-guided sampling and random injection.
+
 void fitness_guided_initialize(individual* population,
     individual* population2,
     const double samples[][vardim],
@@ -17,7 +17,7 @@ void fitness_guided_initialize(individual* population,
     double scale = sqrt((double)vardim / sampsize);
     double delta = base_delta * scale / vardim;
 
-    //const double delta = (xmax - xmin) * (0.5 / (double)vardim);
+    
 
     const double rand_ratio = 0.20;
     const int rand_num = static_cast<int>(popsize * rand_ratio);
@@ -51,7 +51,7 @@ void fitness_guided_initialize(individual* population,
     std::uniform_real_distribution<double> val_dist(xmin, xmax);
 
     int pid = 0;
-    // Generate guided particles around sampled regions.
+    
     for (int i = 0; i < guide_num && pid < popsize; ++i) {
         double r = rand01(rng);
         int idx = std::lower_bound(cumulative.begin(), cumulative.end(), r) - cumulative.begin();
@@ -69,7 +69,7 @@ void fitness_guided_initialize(individual* population,
         population2[pid].fitness = 0.0;
         ++pid;
     }
-    // Fill the remaining particles with random initialization.
+    
     for (; pid < popsize; ++pid) {
         for (int d = 0; d < vardim; ++d) {
             double val = val_dist(rng);

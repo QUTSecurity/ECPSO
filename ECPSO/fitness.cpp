@@ -1,6 +1,6 @@
 ﻿#include "variable.h"
 
-// Compute average per-process prefix-match similarity in [0, 1].
+
 float Sim(const int BL[numprocs][CN], const int MB[numprocs][CN])
 {
 	float subsim[numprocs] = { 0.0 },Fit=0.0;
