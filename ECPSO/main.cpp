@@ -1,4 +1,3 @@
-﻿#pragma comment (lib, "msmpi.lib")
 #define MPICH_SKIP_MPICXX
 #include <mpi.h>
 #include "variable.h"
@@ -33,7 +32,7 @@ enum class GroupingMode {
 
 const GroupingMode GROUPING_MODE = GroupingMode::Auto;
 const double THETA_SWITCH = 0.8;
-const double THETA_GROUP = 0.7;
+const double THETA_GROUP = 0.6;
 static const char* groupingModeName(GroupingMode mode) {
 	switch (mode) {
 	case GroupingMode::Auto: return "auto";
@@ -260,8 +259,13 @@ int main(int argc, char** argv)
 	size_t pool_write_idx = 0;  
 	bool pool_full = false;     
 	int cu_sampling[numpath] = { 0 }; 
-	char programpath[100] = "..\\..\\..\\CONVEX\\x64\\release\\CONVEX.exe"; 
-	char rbfnpath[100] = "..\\..\\..\\RBFN\\x64\\Debug\\RBFN.exe";
+#ifdef _WIN32
+	char programpath[100] = "../convex/convex.exe"; 
+	char rbfnpath[100] = "../rbfn/rbfn.exe";
+#else
+	char programpath[100] = "../convex/convex"; 
+	char rbfnpath[100] = "../rbfn/rbfn";
+#endif
 	int myid, size;
 	srand((unsigned)time(NULL));
 	MPI_Status status;
@@ -435,10 +439,10 @@ int main(int argc, char** argv)
 		
 		cu_sampling[b] = sampsize; 
 		{
-			const double FITNESS_THRESHOLD = 0.40;  
+			const double FITNESS_THRESHOLD = 0.25;  
 			const int    TRANSFER_TOTAL = 0;      
 			const int    QUOTA_TOP = 100;            
-			const int    TRANSFER_PER_PATH = 50;     
+			const int    TRANSFER_PER_PATH = 40;     
 			
 			struct TransferCandidate { const TestedParticleInfo* particle; double max_fitness, min_fitness; };
 			std::vector<TransferCandidate> candidates;

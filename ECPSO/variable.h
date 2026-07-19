@@ -1,9 +1,9 @@
-﻿#include <vector>
+#include <vector>
 #include <algorithm>
 #include <map>
 #ifndef __VARIABLE_H__
 #define __VARIABLE_H__
-const int MAXGEN = 100;    
+const int MAXGEN = 300;    
 const int popsize = 30;  
 const int vardim = 6;    
 
@@ -13,7 +13,7 @@ const int CN = 300;
 const int sampsize = 10;  
 const int selsize = 15;   
 
-const int MAX_STORED_PARTICLES_PER_PATH = 400; 
+const int MAX_STORED_PARTICLES_PER_PATH = 80; 
 
 
 extern double path_similarity_matrix[numpath][numpath]; 

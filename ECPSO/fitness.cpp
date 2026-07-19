@@ -1,4 +1,4 @@
-﻿#include "variable.h"
+#include "variable.h"
 
 
 float Sim(const int BL[numprocs][CN], const int MB[numprocs][CN])
@@ -32,7 +32,7 @@ float Sim(const int BL[numprocs][CN], const int MB[numprocs][CN])
 			if (BL[i][j] != MB[i][j])
 				break;
 		}
-		subsim[i] = j / (float(Max[i])); 
+		subsim[i] = ((Max[i] == 0) ? 1.0f : (j / float(Max[i]))); 
 	}
 	for (i = 0; i < numprocs; i++)
 	{
@@ -40,3 +40,4 @@ float Sim(const int BL[numprocs][CN], const int MB[numprocs][CN])
 	}
 	return Fit / numprocs;
 }
+
